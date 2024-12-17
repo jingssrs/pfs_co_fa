@@ -17,8 +17,10 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
 2. **Data Preparation**: Collect and preprocess the list of cosmology targets.
 3. **Optimization**: Use the fiber assignment algorithm to optimize the assignment of fibers to targets.
 4. **Output Generation**: Generate the output file with the assigned fibers.
+5. **Verfify the Reproducibility**: 
 
 ***Track current observational state of the targets and the current health of the instrument through time***
+
 
 ### Packages
 - `numpy`: For numerical operations.
