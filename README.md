@@ -13,11 +13,12 @@ This repository contains the code for performing fiber assignment for the Prime 
 The goal of this project is to efficiently assign fibers to cosmology targets for the PFS SSP. This involves optimizing the assignment process to maximize the number of targets observed while adhering to various constraints.
 
 ### Workflow
-1. **Predefine Pointing Centers (i.e. tiling strategy)**: Predefine the pointing centers for each visit
+1. **Predefine Pointing Centers (i.e. tiling strategy)**: Predefine the pointing centers for all visit
 2. **Data Preparation**: Collect and preprocess the list of cosmology targets.
 3. **Optimization**: Use the fiber assignment algorithm to optimize the assignment of fibers to targets.
 4. **Output Generation**: Generate the output file with the assigned fibers.
-5. **Verfify the Reproducibility**: 
+5. **Verfify the Reproducibility**
+6. **Update Target List**
 
 ***Track current observational state of the targets and the current health of the instrument through time***
 
