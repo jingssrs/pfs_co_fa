@@ -17,7 +17,7 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
    + raTel [deg.]
    + decTel [deg.]
    + TileID [Unique value in the whole survey]
-3. **Data Preparation**: Collect and preprocess the list of cosmology targets, calibration targets, and ancillary targets.
+3. **Data Preparation**: Collect and preprocess the list of cosmology targets, calibration targets, and ancillary targets into .ecsv format file.
    + ObjectID (unique)
    + R.A. [deg.]
    + Dec. [deg.]
@@ -29,17 +29,19 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
    + Stage (optional, default=0 for cosmology+calibration targets, =1 for ancillary targets)
      (above is the requirement by netflow, below is what we should add for SSP run)
    + AlreadyObserved (default=0, i.e. False; =1, True)
-   + otime (otime value used when running netflow, overwritten by the last fiber design run before it's observed)
-   + posang (posang used when running netflow, default=0)
    + PartiallyObserved (???)
+   + BenchFile (bench file name used when running netflow, remove if not updated often)
+   + otime (otime value used when running netflow, overwritten by the last fiber design run before it's observed)
+   + posang (optional, posang used when running netflow, default=0)
    + TileID (default=-1, set this when AlreadyObserved is set to True)
-   + otimeExtraExposure (otime used if 
-   + TileIDExtraExposure (TileID
-5. **
-6. **Optimization**: Use the fiber assignment algorithm to optimize the assignment of fibers to targets.
-7. **Output Generation**: Generate the output file with the assigned fibers.
-8. **Verfify the Reproducibility**
-9. **Update Target List**
+   + otimeExtraExposure (otime used if extra exposure is assigned to the target in the 2nd pass)
+   + TileIDExtraExposure (TileID for the extra exposure in the 2nd pass)
+   + BenchFileExtraExposure (bench file for the extra exposure in the 2nd pass, remove if not updated often)
+5. **Verfication**: Check the updates of bench file (focal plane status) and calibration targets
+6. **Tile Selection**: Select next tile(s) 
+7. **Fiber Assignment**: Use netflow to assign fibers to the targets in the slected tile(s), generate pfsDesign file 
+8. **Update Target List**: Update target list columns 
+9. **Verify the Reproducibility**: verify the reproducibility the next day
 
 ***Track current observational state of the targets and the current health of the instrument through time***
 
