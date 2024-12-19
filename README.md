@@ -14,7 +14,11 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
 
 ### Workflow
 1. **Predefine Pointing Centers (i.e. tiling strategy)**: Predefine the pointing centers for all visits
-2. **Data Preparation**: Collect and preprocess the list of cosmology targets, calibration targets, and ancillary targets.
+   + raTel [deg.]
+   + decTel [deg.]
+   + TileID [Unique value in the whole survey]
+3. **Data Preparation**: Collect and preprocess the list of cosmology targets, calibration targets, and ancillary targets.
+   + ObjectID (unique)
    + R.A. [deg.]
    + Dec. [deg.]
    + Exposure Time [sec.]
@@ -24,12 +28,18 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
    + Object Type (optional)
    + Stage (optional, default=0 for cosmology+calibration targets, =1 for ancillary targets)
      (above is the requirement by netflow, below is what we should add for SSP run)
-   + 
-4. **
-5. **Optimization**: Use the fiber assignment algorithm to optimize the assignment of fibers to targets.
-6. **Output Generation**: Generate the output file with the assigned fibers.
-7. **Verfify the Reproducibility**
-8. **Update Target List**
+   + AlreadyObserved (default=0, i.e. False; =1, True)
+   + otime (otime value used when running netflow, overwritten by the last fiber design run before it's observed)
+   + posang (posang used when running netflow, default=0)
+   + PartiallyObserved (???)
+   + TileID (default=-1, set this when AlreadyObserved is set to True)
+   + otimeExtraExposure (otime used if 
+   + TileIDExtraExposure (TileID
+5. **
+6. **Optimization**: Use the fiber assignment algorithm to optimize the assignment of fibers to targets.
+7. **Output Generation**: Generate the output file with the assigned fibers.
+8. **Verfify the Reproducibility**
+9. **Update Target List**
 
 ***Track current observational state of the targets and the current health of the instrument through time***
 
