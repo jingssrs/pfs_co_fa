@@ -43,8 +43,7 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
 8. **Update Target List**: Update target list columns 
 9. **Verify the Reproducibility**: verify the reproducibility the next day
 
-***Track current observational state of the targets and the current health of the instrument through time***
-
+***Track/record the status of the instrument through time (mainly bench files)***
 
 ### Packages
 - `numpy`: For numerical operations.
