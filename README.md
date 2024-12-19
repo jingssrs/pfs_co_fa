@@ -26,12 +26,12 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
      (above is the requirement by netflow, below is what we should add for SSP run)
    + AlreadyObserved (default=0, i.e. False; =1, True)
    + PartiallyObserved (???)
-   + BenchFile (bench file name used when running netflow, remove if not updated often)
    + otime (otime value used when running netflow, overwritten by the last fiber design run before it's observed)
-   + posang (optional, posang used when running netflow, default=0)
    + TileID (default=-1, set this when AlreadyObserved is set to True)
-   + otimeExtraExposure (otime used if extra exposure is assigned to the target in the 2nd pass)
+     
    + TileIDExtraExposure (TileID for the extra exposure in the 2nd pass)
+   + otimeExtraExposure (otime used if extra exposure is assigned to the target in the 2nd pass)
+   + BenchFile (bench file name used when running netflow, remove if not updated often)
    + BenchFileExtraExposure (bench file for the extra exposure in the 2nd pass, remove if not updated often)
 2. **Predefine Pointing Centers (i.e. tiling strategy)**: Predefine the pointing centers for all visits
    + raTel [deg.]
