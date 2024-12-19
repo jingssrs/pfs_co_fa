@@ -13,11 +13,7 @@ This repository contains the code for performing fiber assignment for the Prime 
 The goal of this project is to efficiently assign fibers to cosmology targets for the PFS SSP. This involves optimizing the assignment process to maximize the number of targets observed while adhering to various constraints.
 
 ### Workflow
-1. **Predefine Pointing Centers (i.e. tiling strategy)**: Predefine the pointing centers for all visits
-   + raTel [deg.]
-   + decTel [deg.]
-   + TileID [Unique value in the whole survey]
-3. **Data Preparation**: Collect and preprocess the list of cosmology targets, calibration targets, and ancillary targets into .ecsv format file.
+1. **Data Preparation**: Collect and preprocess the list of cosmology targets, calibration targets, and ancillary targets into .ecsv format file.
    + ObjectID (unique)
    + R.A. [deg.]
    + Dec. [deg.]
@@ -37,6 +33,10 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
    + otimeExtraExposure (otime used if extra exposure is assigned to the target in the 2nd pass)
    + TileIDExtraExposure (TileID for the extra exposure in the 2nd pass)
    + BenchFileExtraExposure (bench file for the extra exposure in the 2nd pass, remove if not updated often)
+2. **Predefine Pointing Centers (i.e. tiling strategy)**: Predefine the pointing centers for all visits
+   + raTel [deg.]
+   + decTel [deg.]
+   + TileID [Unique value in the whole survey]
 6. **Tile Selection**: Select next tile(s) 
 5. **Verfication of inputs**: Check the updates of bench file (focal plane status), calibration targets, otime, TileID
 7. **Fiber Assignment**: Use netflow to assign fibers to the targets in the slected tile(s), generate pfsDesign file 
