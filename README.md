@@ -37,19 +37,13 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
    + otimeExtraExposure (otime used if extra exposure is assigned to the target in the 2nd pass)
    + TileIDExtraExposure (TileID for the extra exposure in the 2nd pass)
    + BenchFileExtraExposure (bench file for the extra exposure in the 2nd pass, remove if not updated often)
-5. **Verfication**: Check the updates of bench file (focal plane status) and calibration targets
 6. **Tile Selection**: Select next tile(s) 
+5. **Verfication of inputs**: Check the updates of bench file (focal plane status), calibration targets, otime, TileID
 7. **Fiber Assignment**: Use netflow to assign fibers to the targets in the slected tile(s), generate pfsDesign file 
 8. **Update Target List**: Update target list columns 
 9. **Verify the Reproducibility**: verify the reproducibility the next day
 
 ***Track/record the status of the instrument through time (mainly bench files)***
-
-### Packages
-- `numpy`: For numerical operations.
-- `pandas`: For data manipulation and analysis.
-- `scipy`: For optimization algorithms.
-- `matplotlib`: For plotting and visualization.
 
 ## Installation
 To install the necessary dependencies, run the following command:
@@ -60,7 +54,7 @@ pip install -r requirements.txt
 git clone https://github.com/jingssrs/pfs_co_fa
 
 ## Usage
-To perform fiber assignment, use the following command:
+To perform fiber assignment, use the following command (??? revise later):
 ```bash
 python fiber_assignment.py --input targets.csv --output assignment.csv
 ```
