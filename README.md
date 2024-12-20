@@ -14,7 +14,7 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
 
 ### Workflow
 1. **Data Preparation**: Collect and preprocess the list of cosmology targets, calibration targets, and ancillary targets into .ecsv format file.
-   + ObjectID (unique)
+   + ID (unique)
    + R.A. [deg.]
    + Dec. [deg.]
    + Exposure Time [sec.]
@@ -22,7 +22,7 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
    + Magnitude [ABmag]. (optional)
    + Redshift (optional)
    + Object Type (optional)
-   + Stage (optional, default=0 for cosmology+calibration targets, =1 for ancillary targets)
+   + stage (optional, default=0 for cosmology+calibration targets, =1 for ancillary targets)
      (above is the requirement by netflow, below is what we should add for SSP run)
    + AlreadyObserved (default=0, i.e. False; =1, True)
    + PartiallyObserved (???)
@@ -39,9 +39,10 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
    + TileID [Unique value in the whole survey]
 6. **Tile Selection**: Select next tile(s) 
 5. **Verfication of inputs**: Check the updates of bench file (focal plane status), calibration targets, otime, TileID
-7. **Fiber Assignment**: Use netflow to assign fibers to the targets in the slected tile(s), generate pfsDesign file 
-8. **Update Target List**: Update target list columns 
-9. **Verify the Reproducibility**: verify the reproducibility the next day
+7. **Fiber Assignment**: Use netflow to assign fibers to the targets in the slected tile(s), generate pfsDesign file
+8. **Update FA Log**: update the fiber assignment note file
+9. **Update Target List**: Update target list columns after observation
+10. **Verify the Reproducibility**: verify the reproducibility the next day
 
 ***Track/record the status of the instrument through time (mainly bench files)***
 
