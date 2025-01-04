@@ -15,8 +15,8 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 from matplotlib import rc
 
-rc('font', **{'family':'sans-serif','sans-serif':['Helvitica'],'size': 20})
-rc('text', **{'usetex':'True'})
+#rc('font', **{'family':'sans-serif','sans-serif':['Helvitica'],'size': 20})
+rc('text', **{'usetex':'False'})
 rc('axes', **{'grid':'True','labelsize':24,'linewidth':1.5,})
 rc('xtick',**{'direction':'in','labelsize':20,'minor.visible':True,'major.size': 10,'major.width': 1.5, \
               'minor.size': 3.72,'major.width': 0.8})
