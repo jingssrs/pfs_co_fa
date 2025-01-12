@@ -2,4 +2,4 @@ pybind11
 ets-fiber-assigner @ git+https://github.com/Subaru-PFS/ets_fiberalloc.git
 -e git+https://github.com/Subaru-PFS/ics_cobraCharmer.git#egg=ics-cobraCharmer
 ics-cobraOps @ git+https://github.com/Subaru-PFS/ics_cobraOps.git
-pfs-utils @ git+https://github.com/Subaru-PFS/pfs_utils.git
+

@@ -1,0 +1,13 @@
+# ignore objects and archives, anywhere
+*.[oa]
+.DS_Store
+
+# ignore some folders
+/src/cobra_coach_temp/
+/src/ics-cobracharmer/
+/src/pfs_instdata-1.8.14/
+/src/pfs_utils-w.2024.45/
+/data_proc/
+/data_raw/
+/output/
+
