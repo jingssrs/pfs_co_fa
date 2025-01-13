@@ -5,8 +5,8 @@
 # ignore some folders
 /src/cobra_coach_temp/
 /src/ics-cobracharmer/
-#/src/pfs_instdata-1.8.14/
-#/src/pfs_utils-w.2024.45/
+/src/pfs_instdata-1.8.14/
+/src/pfs_utils-w.2024.45/
 /data_proc/*.fits
 /data_proc/*.ecsv
 /data_raw/
