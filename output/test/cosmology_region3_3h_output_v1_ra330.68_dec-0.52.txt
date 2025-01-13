@@ -1,0 +1,2 @@
+# Exposure 1: duration 900s, RA: 330.682912, Dec: -0.518103, PA: 0.0
+# Target    Fiber          X          Y         RA        DEC
