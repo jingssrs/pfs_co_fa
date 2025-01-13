@@ -48,6 +48,7 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
 
 ## Installation
 To install the necessary dependencies, run the following command:
+(need to update the requirements.txt)
 ```bash
 pip install -r requirements.txt
 ```
@@ -57,9 +58,7 @@ git clone https://github.com/jingssrs/pfs_co_fa
 ## Usage
 To perform fiber assignment, use the following command (??? revise later):
 ```bash
-python fiber_assignment.py --input targets.csv --output assignment.csv
 ```
-Replace `targets.csv` with your input file containing the list of targets and `assignment.csv` with the desired output file name.
 
 ## Contributing
 We welcome contributions to improve the fiber assignment algorithm. Please fork the repository and submit a pull request with your changes.
