@@ -1,0 +1,36 @@
+drp: &DRP
+  listen:
+    interface: shell2-ics
+
+  H: &ENGINE
+    datastore: /work/datastore
+    rawRun: PFS/raw/sps
+    pfsConfigRun: PFS/raw/pfsConfig
+    ingestMode: 'copy'
+    inputCollection: 'PFS/defaults'
+    outputCollection: 'drpActor/reductions'
+    pipelineYaml: 'pipelines/hilo.yaml'
+    nCores: 16
+
+  S:
+    <<: *ENGINE
+    datastore: /data/drp/datastore
+    ingestMode: 'link'
+    pipelineYaml: 'pipelines/summit.yaml'
+    nCores: 10
+    doGenDetrendKey: True
+
+  genDetrendKey:
+    useSilentThread: True
+    waitInterval: 1
+    timeout: 90
+
+drp2:
+  <<: *DRP
+  tron:
+    host: 133.40.164.64
+  listen:
+    interface: pfsa-usr03
+    port: 10000
+  logging:
+    logdir: /work/mhs/logs/actors/drp2

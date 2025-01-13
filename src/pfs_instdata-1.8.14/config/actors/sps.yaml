@@ -1,0 +1,60 @@
+sps:
+  listen:
+    interface: sps-ics
+
+  exposure:
+    doSyncSpectrograph: True # synchronise spectrograph shutter opening.
+    expTimeOverHead: 0 # overhead to calculate the required number of h4 reads.
+    ramp:
+      nReadMin: 3
+      nExtraRead: 1 # EDIT APRIL24 : to be able to synchronise h4 safely, an extra-read was added.
+
+  S:
+    spsModules: [ sm2, sm3, sm4 ]
+
+    sm1:
+      bcu: sci
+      rcu: sci
+      ncu: sci
+      rsh: ok
+      bsh: ok
+      fca: ok
+      rda: ok
+      bia: ok
+      iis: ok
+
+    sm2:
+      bcu: sci
+      rcu: sci
+      ncu: sci
+      rsh: ok
+      bsh: ok
+      fca: ok
+      rda: ok
+      bia: ok
+      iis: ok
+
+    sm3:
+      bcu: sci
+      rcu: sci
+      ncu: sci
+      rsh: ok
+      bsh: ok
+      fca: ok
+      rda: ok
+      bia: ok
+      iis: ok
+
+    sm4:
+      bcu: sci
+      rcu: sci
+      ncu: sci
+      rsh: ok
+      bsh: ok
+      fca: ok
+      rda: ok
+      bia: ok
+      iis: ok
+
+  L:
+    spsModules: [ ]

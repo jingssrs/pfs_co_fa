@@ -1,0 +1,15 @@
+pfsgui:
+  listen:
+    interface: localhost
+
+  display:
+    L:
+      ait: [ rough1, dcb2, aten ]
+      sm2: [ enu, b, r, n ]
+    S:
+      ait: [ dcb, dcb2, rough1, rough2 ] # dcb,rough1,rough2
+      sm1: [ enu, b, r, n ]
+      sm2: [ enu, b, r, n ]
+      sm3: [ enu, b, r, n ]
+      sm4: [ enu, b, r, n ]
+      pfi: [ peb, pfilamps ]
