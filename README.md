@@ -47,8 +47,8 @@ The goal of this project is to efficiently assign fibers to cosmology targets fo
 ***Track/record the status of the instrument through time (mainly bench files)***
 
 ## Installation
-**NOTE** CollisionSimulator2 requires installation of opdb from https://github.com/Subaru-PFS/spt_operational_database
-To install the necessary dependencies, run the following command:
++ **NOTE** CollisionSimulator2 requires installation of opdb from https://github.com/Subaru-PFS/spt_operational_database 
++ To install the necessary dependencies, run the following command:
 (need to update the requirements.txt)
 ```bash
 pip install -r requirements.txt
