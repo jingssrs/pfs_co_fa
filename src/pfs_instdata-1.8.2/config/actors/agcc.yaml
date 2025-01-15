@@ -1,0 +1,99 @@
+agcc:
+
+  listen:
+    interface: agcc2
+    #interface: agcc
+
+  cam1 : ML0424912
+  cam2 : ML0374912
+  cam3 : ML0384912
+  cam4 : ML0394912
+  cam5 : ML0404912
+  cam6 : ML0414912
+
+  # Default CCD temperature
+  temperature : 20
+  simulator : 0
+  # simulated image may contain 6 image extension for 6 AG cameras
+  simulatedImagePath : /home/pfs/subaru-telescope-202109/agcc15000.fits
+
+  cameraParams:
+    '1':
+      badCols: []
+      reg:
+      - 25
+      - 500
+      - 10
+      - 1032
+      - 557
+      - 1048
+      - 10
+      - 1032
+    '2':
+      badCols: []
+      reg:
+      - 25
+      - 500
+      - 10
+      - 1032
+      - 557
+      - 1048
+      - 10
+      - 1032
+    '3':
+      badCols: []
+      reg:
+      - 25
+      - 480
+      - 10
+      - 1032
+      - 557
+      - 1048
+      - 10
+      - 1032
+    '4':
+      badCols:
+      - 332
+      reg:
+      - 25
+      - 500
+      - 10
+      - 1032
+      - 570
+      - 1048
+      - 10
+      - 1032
+    '5':
+      badCols: []
+      reg:
+      - 25
+      - 500
+      - 10
+      - 1032
+      - 570
+      - 1048
+      - 10
+      - 1032
+    '6':
+      badCols: []
+      reg:
+      - 25
+      - 480
+      - 10
+      - 1032
+      - 548
+      - 1048
+      - 10
+      - 1032
+    satVal: 65535
+    magFit: [0.928,27.389]
+
+  centroidParams:
+    values:
+    thresh: 10
+    nmin: 20
+    minarea: 15
+    deblend: 0.01
+    ellip: 0.5
+    
+

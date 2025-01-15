@@ -1,0 +1,32 @@
+iic:
+  pfsDesign:
+    rootDir: /data/pfsDesign
+  maskFiles:
+    rootDir: /data/fps/maskFiles
+  nearDotConvergence:
+    nIteration: 8
+    tolerance: 0.005
+  dotCrossing:
+    stepSize: -40
+    count: 40
+  dotRoach:
+    rootDir: /data/drp/dotRoach
+    stepSize: 90
+    count: 30
+    motor: phi
+  fps:
+    cableBLampOn: False
+  mcs:
+    exptime: 4.8
+  ag:
+    fit_dScale: True
+
+  windowedFlat:
+    pfiLamps:
+      exptime: 15
+      redWindow: 600,800
+      blueWindow: 2500,800
+    hscLamps:
+      exptime: 5.
+      redWindow: 600,500
+      blueWindow: 2500,500

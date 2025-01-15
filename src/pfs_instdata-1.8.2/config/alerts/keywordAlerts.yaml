@@ -1,0 +1,305 @@
+# Template for all keyword alerts:
+#    alertType: a name, to help any consumers
+#    call: True, False, or an object, method pair, where we find the named object
+#          and call the corresponding method.
+#          If True, call a generic callback for this alertType
+#    alertFmt: if non-null, an f-string evaluated inside the call method. It is expected
+#              to have the alertCall() argument variables available to it, plus "value".
+#              This may be the biggest security hole ever put into a program.
+#
+# The call method is called with:
+#    alertCall(fullReply, actorName, keyName, keyIndex)
+#
+# Note that the base template "alert" is actually a trigger: it is always called
+# when a new keyword value is received.
+#
+_alert: &ALERT
+  alertType: trigger
+  call: True
+  alertFmt: null
+# Template for an alert with simple limits:
+#   limits: a numeric pair of non-inclusive limits, with NaN for
+#           unused limits. I.e. trigger if (min <= val or val >=  max)
+#           lowerBound and upperBound can be set to be inclusive using
+#           lowerBoundInclusive, upperBoundInclusive config knob.
+#
+_limitsAlert: &LIMITS_ALERT
+  <<: *ALERT
+  alertType: limits
+  limits: [ null, null ]
+  lowerBoundInclusive: False
+  upperBoundInclusive: False
+
+# Template for regexp match alerts:
+#   re: a regular expression
+#   invert: bool, whether or not to invert the match sense
+#
+_regexpAlert: &REGEXP_ALERT
+  <<: *ALERT
+  alertType: regexp
+  pattern: null
+  invert: False
+
+# Template for boolean alerts:
+#   nominalValue:False or True
+#
+_boolAlert: &BOOLEAN_ALERT
+  <<: *ALERT
+  alertType: boolean
+  nominalValue: False
+
+################################################################
+#
+# Actual alerts below
+#
+
+# We group all keyword alerts by actor
+#
+actors:
+  meb: # MCS E-Box
+    flow[flow_meter]:
+      <<: *LIMITS_ALERT
+      limits: [ 0.0, null ]
+      alertFmt: 'coolant flow has stopped !'
+    temps[Top_plate]:
+      <<: *LIMITS_ALERT
+      limits: [ 0.0, 25.0 ]
+      alertFmt: 'temperature out of range !'
+
+  peb: # PFI E-Box
+    leakage[0]:
+      <<: *BOOLEAN_ALERT
+      nominalValue: False
+      alertFmt: 'there is a leak !'
+    leakage[1]:
+      <<: *BOOLEAN_ALERT
+      nominalValue: False
+      alertFmt: 'Sensor disconnected !'
+    valve_status[0]:
+      <<: *BOOLEAN_ALERT
+      nominalValue: False
+      alertFmt: 'Valve closed, go check !'
+    temps[AGC_1]: &AGC_TEMP
+      <<: *LIMITS_ALERT
+      limits: [ null, 25 ]
+      alertFmt: 'is too high: {value}C !'
+    temps[AGC_2]:
+      <<: *AGC_TEMP
+    temps[AGC_3]:
+      <<: *AGC_TEMP
+    temps[AGC_4]:
+      <<: *AGC_TEMP
+    temps[AGC_5]:
+      <<: *AGC_TEMP
+    temps[AGC_6]:
+      <<: *AGC_TEMP
+
+  xcu: &XCU # All XCUs
+    unknown: [ ]
+    offline: [ ]
+    standby: [ ]
+    warmup: [ ]
+
+    all: &ALL
+      pcmPower1[volts]:
+        <<: *LIMITS_ALERT
+        limits: [ 27.0, null ]
+        alertFmt: '24V-UPS Input power is failing: {value}V !'
+      pcmPower2[volts]:
+        <<: *LIMITS_ALERT
+        call: xcu.check24VAUX
+        limits: [ 24.0, null ]
+        alertFmt: '24V-AUX Input power is failing: {value}V !'
+      ionpump1Errors[errors]: &IONPUMP_ERROR
+        <<: *REGEXP_ALERT
+        alertFmt: '{value} !'
+      ionpump2Errors[errors]:
+        <<: *IONPUMP_ERROR
+      coolerStatus[errors]: &COOLER_ERROR
+        <<: *REGEXP_ALERT
+        alertFmt: '{value} !'
+
+    roughing:
+      gatevalve[position]: &GATEVALVE_OPEN
+        <<: *REGEXP_ALERT
+        alertFmt: 'current {value} should be open !'
+        pattern: '^Open$'
+
+    pumpdown: &PUMPDOWN
+      pressure: &PRESSURE
+        <<: *LIMITS_ALERT
+        alertFmt: 'is too high: {value}Torr !'
+        limits: [ null, 1 ]
+      turboSpeed:
+        <<: *LIMITS_ALERT
+        alertFmt: 'is too low: {value}RPM !'
+        limits: [ 89000, null ]
+      gatevalve[position]:
+        <<: *GATEVALVE_OPEN
+
+    ionpumping:
+      pressure:
+        <<: *PRESSURE
+        limits: [ null, 1.0e-4 ]
+      gatevalve[position]: &GATEVALVE_CLOSE
+        <<: *REGEXP_ALERT
+        alertFmt: 'current {value} should be closed !'
+        pattern: '^Closed$'
+      ionpump1[enabled]: &IONPUMP_ON
+        <<: *BOOLEAN_ALERT
+        alertFmt: 'pump should be on !'
+        nominalValue: True
+      ionpump2[enabled]:
+        <<: *IONPUMP_ON
+
+
+    cooldown: &COOLDOWN
+      pressure:
+        <<: *PRESSURE
+        limits: [ null, 5.0e-6 ]
+      gatevalve[position]:
+        <<: *GATEVALVE_CLOSE
+      ionpump1[enabled]:
+        <<: *IONPUMP_ON
+      ionpump2[enabled]:
+        <<: *IONPUMP_ON
+      coolerTemps[reject]: &COOLER_REJECT
+        <<: *LIMITS_ALERT
+        alertFmt: 'is too high: {value}C !'
+        limits: [ null, 45 ]
+      coolerTemps[power]: &COOLER_POWER
+        <<: *LIMITS_ALERT
+        alertFmt: 'is out of range: {value}W ! ({lowerLimit};{upperLimit})'
+        limits: [ 70, null ]
+        lowerBoundInclusive: True
+
+
+  viscu: &VISCU # All VisCU (b + r)
+    <<: *XCU
+    operation:
+      <<: *COOLDOWN
+      coolerTemps[reject]:
+        <<: *COOLER_REJECT
+        limits: [ null, 35 ]
+      visTemps[detector2]: &CCD_TEMP
+        <<: *LIMITS_ALERT
+        alertFmt: 'is out of range: {value}K !! ({lowerLimit};{upperLimit})'
+        limits: [ 162.9, 163.1 ]
+    bakeout:
+      <<: *PUMPDOWN
+      visTemps[detector2]:
+        <<: *CCD_TEMP
+        limits: [ null, 330 ]
+
+  ncu: &NCU # All NCUs
+    <<: *XCU
+    all:
+      <<: *ALL
+      cooler2Status[errors]:
+        <<: *COOLER_ERROR
+
+    cooldown: &N_COOLDOWN
+      <<: *COOLDOWN
+      coolerTemps[reject]: &N_COOLDOWN_REJECT
+        <<: *COOLER_REJECT
+        limits: [ null, 50 ]
+      cooler2Temps[reject]:
+        <<: *N_COOLDOWN_REJECT
+      cooler2Temps[power]:
+        <<: *COOLER_POWER
+
+    operation: &N_OPERATION
+      <<: *N_COOLDOWN
+      coolerTemps[reject]: &N_OPERATION_REJECT
+        <<: *COOLER_REJECT
+        limits: [ null, 45 ]
+      cooler2Temps[reject]:
+        <<: *N_OPERATION_REJECT
+      nirTemps[detector2]: &H4_TEMP
+        <<: *LIMITS_ALERT
+        alertFmt: 'is out of range: {value}K !! ({lowerLimit};{upperLimit})'
+        limits: [ 100.99, 101.01 ]
+
+    bakeout:
+      <<: *PUMPDOWN
+      nirTemps[detector2]:
+        <<: *H4_TEMP
+        limits: [ null, 330 ]
+
+  enu: &ENU
+    biashaFSM[substate]:
+      <<: *REGEXP_ALERT
+      pattern: ^FAILED$
+      invert: True
+      alertFmt: 'arduino board is in failed state !'
+
+  tests:
+    keytest1:
+      <<: *ALERT
+      call: tests.checkTempRange
+    keytest2:
+      <<: *LIMITS_ALERT
+      limits: [ null, 1.0e-06 ]
+      alertFmt: 'keytest3 is too high: {value} !'
+    keytest3[1]:
+      <<: *REGEXP_ALERT
+      alertFmt: 'test regexp: {value} !'
+
+  rough: &ROUGH
+    pumpSpeed:
+      <<: *LIMITS_ALERT
+      limits: [ 30, null ]
+      lowerBoundInclusive: True
+      call: rough.checkCryoMode
+      alertFmt: 'is too low: {value}RPM !'
+
+  rough1:
+    <<: *ROUGH
+  rough2:
+    <<: *ROUGH
+
+  xcu_b1:
+    <<: *VISCU
+  xcu_r1:
+    <<: *VISCU
+  xcu_n1:
+    <<: *NCU
+
+  enu_sm1:
+
+    <<: *ENU
+
+  xcu_b2:
+    <<: *VISCU
+  xcu_r2:
+    <<: *VISCU
+  xcu_n2:
+    <<: *NCU
+  enu_sm2:
+    <<: *ENU
+
+  xcu_b3:
+    <<: *VISCU
+  xcu_r3:
+    <<: *VISCU
+  xcu_n3:
+    <<: *NCU
+  enu_sm3:
+    <<: *ENU
+
+  xcu_b4:
+    <<: *VISCU
+  xcu_r4:
+    <<: *VISCU
+  xcu_n4:
+    <<: *NCU
+  enu_sm4:
+    <<: *ENU
+
+
+  # AIT@LAM keyword:
+  aitroom: # MCS E-Box
+    chiller[flow]:
+      <<: *LIMITS_ALERT
+      limits: [ 0.0, null ]
+      alertFmt: 'coolant flow has stopped !'
