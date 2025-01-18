@@ -1,0 +1,4 @@
+ppc_code,ppc_ra,ppc_dec,ppc_pa,ppc_resolution,ppc_priority
+pointing_flda_L1_exp0,37.050000000000004,-3.8,0,L,0.0
+pointing_flda_L3_exp0,37.1,-5.2,0,L,0.1
+pointing_flda_L4_exp0,35.800000000000004,-3.8,0,L,0.2
