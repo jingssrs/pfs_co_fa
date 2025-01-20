@@ -1,5 +1,5 @@
 ppc_code,ppc_ra,ppc_dec,ppc_pa,ppc_resolution,ppc_priority
-pointing_flde_L1_exp0,132.54999999999998,1.4,0,L,0.0
-pointing_flde_L2_exp0,132.64999999999998,-0.2,0,L,0.1
-pointing_flde_L3_exp0,129.1,1.4,0,L,0.2
-pointing_flde_L4_exp0,129.39999999999998,-0.25,0,L,0.3
+pointing_flde_L1_exp0,132.49999999999997,1.4,0,L,0.0
+pointing_flde_L2_exp0,132.59999999999997,-0.2,0,L,0.1
+pointing_flde_L3_exp0,129.04999999999998,1.4,0,L,0.2
+pointing_flde_L4_exp0,129.34999999999997,-0.25,0,L,0.3
