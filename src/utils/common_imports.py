@@ -8,7 +8,8 @@ import os
 
 # io 
 from astropy.io import fits
-from astropy.table import Table
+from astropy.table import Table, column
+from astropy.io import fits, ascii
 
 # plot 
 import matplotlib.pyplot as plt
