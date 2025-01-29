@@ -1,0 +1,59 @@
+# Directory where the input targets file is located
+input_dir: "../data_proc/test/"
+
+# Input targets file
+input_files: 
+  cos_file: "cosmology_region3_3h_targets.ecsv"
+  fluxstd_file: "star_region3_3h_targets.ecsv"
+  sky_file: "sky_region3_3h_targets.ecsv"
+  #anc_file: 
+
+# used for constrcuting the target list function
+prefix_list: ["sci", "cal", "sky"]
+calibration_list: [False, True, True]
+
+
+# Directory where netflow output will be saved
+output_dir: "../output/test/"
+
+# Directory where figures will be saved
+output_fig_dir: "../output/figures/test/"
+
+# pointings file
+pointings_file: "../output/pointings/test/cosmology_region3_3h_pointings.ecsv"
+
+# telescope parameters
+tele_params:
+  # Observation time in UTC
+  otime: "2025-08-20T11:00:00Z"
+  # Position angle in degrees
+  posang: 0.0
+  # Exposure time in seconds
+  t_obs: 900.0
+
+# Gurobi optimization options 
+# gurobiOptions = dict(seed=0, presolve=1, method=4, degenmoves=0, heuristics=0.8, mipfocus=0, mipgap=5.e-2, LogToConsole=1)
+gurobiOptions:
+  seed: 0
+  presolve: 1
+  method: 4
+  degenMoves: 0
+  heuristics: 0.8
+  mipfocus: 0
+  mipgap: 0.05
+  LogToConsole: 1
+
+# bench configurations
+bench_config:
+  cobra_coach_dir: "./cobra_coach_temp/"
+  fiberids_path: "./pfs_utils-w.2024.45/data/fiberids/"
+  pfs_black_dots_path: "./pfs_instdata-1.8.14/data/pfi/dot/black_dots_mm.csv"
+  pfs_pfi_module_path: "./pfs_instdata-1.8.14/data/pfi/modules/ALL/ALL_final.xml"
+  pfs_instdata_path: "./pfs_instdata-1.8.14/"
+
+
+# Range of right ascension values in degrees
+ra_range: [-10.0, 10.0]
+
+# Range of declination values in degrees
+dec_range: [-90.0, 90.0]
