@@ -6,69 +6,7 @@ from astropy.coordinates import SkyCoord
 from matplotlib.path import Path
 import astropy.units as u
 
-# TODO: same function as in pointings.ipynb -- older version
-def plot_filter_fov(raP, decP, raSci, decSci, PA=0, n_sci_fov_least=3000, filter_fov=True):
-    '''plot one PFS FoV (hexagon) centered at the pointing center
-    
-    NOTE
-    ==========
-    flag_fov_reserved is obtained by using a threshold of targets in the FoV
-
-    Parameters
-    ==========
-    raP, decP, PA : float
-        ra, dec, PA of the pointing center
-
-    raSci, decSci: numpy array, float
-        ra, dec of the scientific targets
-        only used to check the number of scientific targets in the FoV
-    
-    n_sci_fov_least: int
-        the least number of scientific targets in the FoV
-
-    filter_fov: Boolean
-        if True, plot/select the FoV only when there are enough scientific targets in the FoV
-
-        
-    Returns
-    =======
-    plot a hexagon at the pointing center with diameter=1.38 deg
-    
-    flag_fov_reserved: Boolean, used to remove the pointing w/o enough scientific targets 
-    '''
-    
-    center = SkyCoord(raP*u.deg, decP*u.deg)
-    # PA=0 along y-axis, PA=90 along x-axis, PA=180 along -y-axis...
-    hexagon = center.directional_offset_by([0+PA, 60+PA, 120+PA, 180+PA, 240+PA, 300+PA, 360+PA]*u.deg, 1.38/2.*u.deg)
-    ra_h = hexagon.ra.deg
-    dec_h = hexagon.dec.deg
-
-    ra_h_in = np.where(np.fabs(ra_h-center.ra.deg)>180)
-    if len(ra_h_in[0])>0:
-        if ra_h[ra_h_in[0][0]]>180:ra_h[ra_h_in[0]]-=360
-        elif ra_h[ra_h_in[0][0]]<180:ra_h[ra_h_in[0]]+=360
-        #pdb.set_trace()
-
-    # scientific targets
-    point = np.vstack((raSci, decSci)).T
-    
-    # TODO: revise the polygon.contains_points for the ra near 0 and 360 cases
-    if filter_fov:
-        polygon = Path([(ra_h[t],dec_h[t]) for t in range(len(ra_h))])
-        index_ = np.where(polygon.contains_points(point)==True)[0]
-
-        if(len(index_)<n_sci_fov_least):
-            flag_fov_reserved = False
-        else:
-            flag_fov_reserved = True
-            plt.plot(ra_h, dec_h, color='r', lw=0.5, ls='-', alpha=1., zorder=5)
-    else:
-        flag_fov_reserved = True
-        plt.plot(ra_h, dec_h, color='r', lw=0.5, ls='-', alpha=1., zorder=5)
-    
-    return flag_fov_reserved
-
-
+# TODO: same as in pointings.ipynb
 def plot_filter_fov(raP, decP, raSci, decSci, PA=0, n_sci_fov_least=3000, filter_fov=True):
     '''plot one PFS FoV (hexagon) centered at the pointing center
     
@@ -117,7 +55,7 @@ def plot_filter_fov(raP, decP, raSci, decSci, PA=0, n_sci_fov_least=3000, filter
     # scientific targets
     point = np.vstack((raSci, decSci)).T
     
-    # TODO: revise the polygon.contains_points for the ra near 0 and 360 cases
+
     if filter_fov:
         polygon = Path([(ra_h[t],dec_h[t]) for t in range(len(ra_h))])
         index_ = np.where(polygon.contains_points(point)==True)[0]
@@ -143,6 +81,19 @@ def read_pointings(file):
 
     return pointings
 
+def select_pointings(pointings, ra_range, dec_range):
+    '''
+    select pointings within the range
+    '''
+    ra_peaks = pointings['ppc_ra']
+    dec_peaks = pointings['ppc_dec']
+    # wrap the ra to [-180, 180] for the HSC wide autumn field
+    ra_peaks[ra_peaks>300] -= 360
+
+    mask_peaks = (ra_peaks>ra_range[0]) & (ra_peaks<ra_range[1]) & (dec_peaks>dec_range[0]) & (dec_peaks<dec_range[1])
+    print("Select %d pointings." % np.sum(mask_peaks))
+    
+    return pointings[mask_peaks]
 
 
 def plot_radec(dt, title, save_fig=True, output_dir='../output/figures/'):

@@ -1,65 +1,91 @@
-[I 250129 21:37:34 2442370712:9] test.log created.
-[I 250129 21:37:34 2442370712:10] ------------------------------------
-[I 250129 21:37:34 2442370712:18] input_dir:
-[I 250129 21:37:35 2442370712:19] ../data_proc/test/:
-[I 250129 21:37:35 2442370712:18] input_files:
-[I 250129 21:37:35 2442370712:19] {'cos_file': 'cosmology_region3_3h_targets.ecsv', 'fluxstd_file': 'star_region3_3h_targets.ecsv', 'sky_file': 'sky_region3_3h_targets.ecsv'}:
-[I 250129 21:37:35 2442370712:18] prefix_list:
-[I 250129 21:37:35 2442370712:19] ['sci', 'cal', 'sky']:
-[I 250129 21:37:35 2442370712:18] calibration_list:
-[I 250129 21:37:35 2442370712:19] [False, True, True]:
-[I 250129 21:37:35 2442370712:18] output_dir:
-[I 250129 21:37:35 2442370712:19] ../output/test/:
-[I 250129 21:37:35 2442370712:18] output_fig_dir:
-[I 250129 21:37:35 2442370712:19] ../output/figures/test/:
-[I 250129 21:37:35 2442370712:18] pointings_file:
-[I 250129 21:37:35 2442370712:19] ../output/pointings/test/cosmology_region3_3h_pointings.ecsv:
-[I 250129 21:37:35 2442370712:18] tele_params:
-[I 250129 21:37:35 2442370712:19] {'otime': '2025-08-20T11:00:00Z', 'posang': 0.0, 't_obs': 900.0}:
-[I 250129 21:37:35 2442370712:18] gurobiOptions:
-[I 250129 21:37:35 2442370712:19] {'seed': 0, 'presolve': 1, 'method': 4, 'degenMoves': 0, 'heuristics': 0.8, 'mipfocus': 0, 'mipgap': 0.05, 'LogToConsole': 1}:
-[I 250129 21:37:35 2442370712:18] bench_config:
-[I 250129 21:37:35 2442370712:19] {'cobra_coach_dir': './cobra_coach_temp/', 'fiberids_path': './pfs_utils-w.2024.45/data/fiberids/', 'pfs_black_dots_path': './pfs_instdata-1.8.14/data/pfi/dot/black_dots_mm.csv', 'pfs_pfi_module_path': './pfs_instdata-1.8.14/data/pfi/modules/ALL/ALL_final.xml', 'pfs_instdata_path': './pfs_instdata-1.8.14/'}:
-[I 250129 21:37:35 2442370712:18] ra_range:
-[I 250129 21:37:35 2442370712:19] [-10.0, 10.0]:
-[I 250129 21:37:35 2442370712:18] dec_range:
-[I 250129 21:37:35 2442370712:19] [-90.0, 90.0]:
-[I 250129 21:37:35 2442370712:20] ------------------------------------
-[I 250129 21:37:35 2442370712:43] sci_P1:
-[I 250129 21:37:35 2442370712:44] {'nonObservationCost': 400, 'partialObservationCost': 1000000.0, 'calib': False}:
-[I 250129 21:37:35 2442370712:43] sci_P2:
-[I 250129 21:37:35 2442370712:44] {'nonObservationCost': 200, 'partialObservationCost': 1000000.0, 'calib': False}:
-[I 250129 21:37:35 2442370712:43] anc_P1:
-[I 250129 21:37:35 2442370712:44] {'nonObservationCost': 50, 'partialObservationCost': 1000000.0, 'calib': False}:
-[I 250129 21:37:35 2442370712:43] anc_P2:
-[I 250129 21:37:35 2442370712:44] {'nonObservationCost': 10, 'partialObservationCost': 1000000.0, 'calib': False}:
-[I 250129 21:37:35 2442370712:43] sky:
-[I 250129 21:37:35 2442370712:44] {'numRequired': 400, 'nonObservationCost': 1000000.0, 'calib': True}:
-[I 250129 21:37:35 2442370712:43] cal:
-[I 250129 21:37:35 2442370712:44] {'numRequired': 200, 'nonObservationCost': 1000000.0, 'calib': True}:
-[I 250129 21:37:35 2442370712:45] ------------------------------------
-[I 250129 21:37:35 2442370712:50]  ppc_code  ppc_ra ppc_dec ppc_pa ppc_resolution ppc_priority obstime
-    --------- ------- ------- ------ -------------- ------------ -------
-     Autumn_0 358.468   -1.27    0.0              L            1     nan
-     Autumn_1 358.468  -0.075    0.0              L            1     nan
-     Autumn_2 358.468    1.12    0.0              L            1     nan
-     Autumn_3 358.468   2.315    0.0              L            1     nan
-     Autumn_4 358.468    3.51    0.0              L            1     nan
-     Autumn_5 358.468   4.706    0.0              L            1     nan
-     Autumn_6 359.503  -0.672    0.0              L            1     nan
-     Autumn_7 359.503   0.523    0.0              L            1     nan
-     Autumn_8 359.503   1.718    0.0              L            1     nan
-     Autumn_9 359.503   2.913    0.0              L            1     nan
-    Autumn_10 359.503   4.108    0.0              L            1     nan
-    Autumn_11   0.538   -1.27    0.0              L            1     nan
-    Autumn_12   0.538  -0.075    0.0              L            1     nan
-    Autumn_13   0.538    1.12    0.0              L            1     nan
-    Autumn_14   0.538   2.315    0.0              L            1     nan
-    Autumn_15   0.538    3.51    0.0              L            1     nan
-    Autumn_16   0.538   4.706    0.0              L            1     nan
-    Autumn_17   1.573  -0.672    0.0              L            1     nan
-    Autumn_18   1.573   0.523    0.0              L            1     nan
-    Autumn_19   1.573   1.718    0.0              L            1     nan
-    Autumn_20   1.573   2.913    0.0              L            1     nan
-    Autumn_21   1.573   4.108    0.0              L            1     nan
-[I 250129 21:37:35 2442370712:51] ------------------------------------
+[I 250207 13:27:30 2005108132:9] test.log created.
+[I 250207 13:27:30 2005108132:10] ------------------------------------
+[I 250207 13:27:30 2005108132:18] input_dir:
+[I 250207 13:27:30 2005108132:19] ../data_proc/test/:
+[I 250207 13:27:30 2005108132:18] input_files:
+[I 250207 13:27:30 2005108132:19] {'cos_file': 'cosmology_region3_3h_targets.ecsv', 'fluxstd_file': 'star_region3_3h_targets.ecsv', 'sky_file': 'sky_region3_3h_targets.ecsv'}:
+[I 250207 13:27:30 2005108132:18] prefix_list:
+[I 250207 13:27:30 2005108132:19] ['sci', 'cal', 'sky']:
+[I 250207 13:27:30 2005108132:18] calibration_list:
+[I 250207 13:27:30 2005108132:19] [False, True, True]:
+[I 250207 13:27:30 2005108132:18] output_dir:
+[I 250207 13:27:30 2005108132:19] ../output/test/:
+[I 250207 13:27:30 2005108132:18] output_fig_dir:
+[I 250207 13:27:30 2005108132:19] ../output/figures/test/:
+[I 250207 13:27:30 2005108132:18] pointings_file:
+[I 250207 13:27:30 2005108132:19] ../output/pointings/test/cosmology_region3_3h_pointings.ecsv:
+[I 250207 13:27:30 2005108132:18] tele_params:
+[I 250207 13:27:30 2005108132:19] {'posang': 0.0, 't_obs': 900.0, 'fov': 1.38}:
+[I 250207 13:27:30 2005108132:18] gurobiOptions:
+[I 250207 13:27:30 2005108132:19] {'seed': 0, 'presolve': 1, 'method': 4, 'degenMoves': 0, 'heuristics': 0.8, 'mipfocus': 0, 'mipgap': 0.05, 'LogToConsole': 1}:
+[I 250207 13:27:30 2005108132:18] bench_config:
+[I 250207 13:27:30 2005108132:19] {'cobra_coach_dir': './cobra_coach_temp/', 'fiberids_path': './pfs_utils-w.2024.45/data/fiberids/', 'pfs_black_dots_path': './pfs_instdata-1.8.14/data/pfi/dot/black_dots_mm.csv', 'pfs_pfi_module_path': './pfs_instdata-1.8.14/data/pfi/modules/ALL/ALL_final.xml', 'pfs_instdata_path': './pfs_instdata-1.8.14/'}:
+[I 250207 13:27:30 2005108132:18] ra_range:
+[I 250207 13:27:30 2005108132:19] [-10.0, 10.0]:
+[I 250207 13:27:30 2005108132:18] dec_range:
+[I 250207 13:27:30 2005108132:19] [-1.5, 0.5]:
+[I 250207 13:27:30 2005108132:18] two_stage:
+[I 250207 13:27:30 2005108132:19] True:
+[I 250207 13:27:30 2005108132:20] ------------------------------------
+[I 250207 13:27:30 2005108132:47] sci_P1:
+[I 250207 13:27:30 2005108132:48] {'nonObservationCost': 400, 'partialObservationCost': 1000000.0, 'calib': False}:
+[I 250207 13:27:30 2005108132:47] sci_P2:
+[I 250207 13:27:30 2005108132:48] {'nonObservationCost': 200, 'partialObservationCost': 1000000.0, 'calib': False}:
+[I 250207 13:27:30 2005108132:47] anc_P1:
+[I 250207 13:27:30 2005108132:48] {'nonObservationCost': 50, 'partialObservationCost': 1000000.0, 'calib': False}:
+[I 250207 13:27:30 2005108132:47] anc_P2:
+[I 250207 13:27:30 2005108132:48] {'nonObservationCost': 10, 'partialObservationCost': 1000000.0, 'calib': False}:
+[I 250207 13:27:30 2005108132:47] sky:
+[I 250207 13:27:30 2005108132:48] {'numRequired': 400, 'nonObservationCost': 1000000.0, 'calib': True}:
+[I 250207 13:27:30 2005108132:47] cal:
+[I 250207 13:27:30 2005108132:48] {'numRequired': 200, 'nonObservationCost': 1000000.0, 'calib': True}:
+[I 250207 13:27:30 2005108132:49] ------------------------------------
+[I 250207 13:27:30 2005108132:59]  ppc_code        ppc_ra       ppc_dec ... obstime        otime        
+    --------- ------------------- ------- ... ------- --------------------
+     Autumn_0  -9.812000000000012  -0.075 ...     nan 2025-08-20T11:00:00Z
+     Autumn_1  -8.776999999999987  -0.672 ...     nan 2025-08-20T11:00:00Z
+     Autumn_2  -7.742000000000019   -1.27 ...     nan 2025-08-20T11:00:00Z
+     Autumn_3  -7.742000000000019  -0.075 ...     nan 2025-08-20T11:00:00Z
+     Autumn_4  -6.706999999999994  -0.672 ...     nan 2025-08-20T11:00:00Z
+     Autumn_5 -5.6720000000000255   -1.27 ...     nan 2025-08-20T11:00:00Z
+     Autumn_6 -5.6720000000000255  -0.075 ...     nan 2025-08-20T11:00:00Z
+     Autumn_7 -4.6370000000000005  -0.672 ...     nan 2025-08-20T11:00:00Z
+     Autumn_8 -3.6019999999999754   -1.27 ...     nan 2025-08-20T11:00:00Z
+     Autumn_9 -3.6019999999999754  -0.075 ...     nan 2025-08-20T11:00:00Z
+          ...                 ...     ... ...     ...                  ...
+    Autumn_18               2.608  -0.075 ...     nan 2025-08-20T11:00:00Z
+    Autumn_19               3.643  -0.672 ...     nan 2025-08-20T11:00:00Z
+    Autumn_20               4.678   -1.27 ...     nan 2025-08-20T11:00:00Z
+    Autumn_21               4.678  -0.075 ...     nan 2025-08-20T11:00:00Z
+    Autumn_22               5.713  -0.672 ...     nan 2025-08-20T11:00:00Z
+    Autumn_23               6.748   -1.27 ...     nan 2025-08-20T11:00:00Z
+    Autumn_24               6.748  -0.075 ...     nan 2025-08-20T11:00:00Z
+    Autumn_25               7.783  -0.672 ...     nan 2025-08-20T11:00:00Z
+    Autumn_26               8.818   -1.27 ...     nan 2025-08-20T11:00:00Z
+    Autumn_27               8.818  -0.075 ...     nan 2025-08-20T11:00:00Z
+    Autumn_28               9.853  -0.672 ...     nan 2025-08-20T11:00:00Z
+    Length = 29 rows
+[I 250207 13:27:30 2005108132:60] ------------------------------------
+[I 250207 13:28:12 660354141:5] Time to construct target list: 42.30215072631836 seconds.
+[I 250207 13:28:12 660354141:6] ------------------------------------
+[I 250207 13:28:19 498797999:41] Time to plot selected science targets: 5.822242021560669 seconds.
+[I 250207 13:28:19 498797999:42] ------------------------------------
+[I 250207 13:30:02 810113500:25] Time to set alreadyObserved: 102.8617172241211 seconds.
+[I 250207 13:30:02 810113500:26] ------------------------------------
+[I 250207 13:30:08 3354007454:7] ------------------------------------
+[I 250207 14:36:20 1231288733:19] Time to execute netflow for pointing (Autumn_0, -9.812000000000012, -0.075): 223.50791692733765 seconds.
+[I 250207 14:36:21 1231288733:35] Time to calculate completeness: 1.565868854522705 seconds.
+[I 250207 14:36:21 1231288733:43] Time to update alreadyObserved: 0.006154298782348633 seconds.
+[I 250207 14:36:22 1231288733:49] Time to plot tgt_done.png: 0.9578397274017334 seconds.
+[I 250207 14:45:47 1231288733:19] Time to execute netflow for pointing (Autumn_1, -8.776999999999987, -0.672): 564.5498178005219 seconds.
+[I 250207 14:45:48 1231288733:35] Time to calculate completeness: 1.3651890754699707 seconds.
+[I 250207 14:45:48 1231288733:43] Time to update alreadyObserved: 0.006308794021606445 seconds.
+[I 250207 14:45:49 1231288733:49] Time to plot tgt_done.png: 0.9238483905792236 seconds.
+[I 250207 14:50:16 1231288733:19] Time to execute netflow for pointing (Autumn_2, -7.742000000000019, -1.27): 266.9855167865753 seconds.
+[I 250207 14:50:18 1231288733:35] Time to calculate completeness: 1.4462430477142334 seconds.
+[I 250207 14:50:18 1231288733:43] Time to update alreadyObserved: 0.004942178726196289 seconds.
+[I 250207 14:50:19 1231288733:49] Time to plot tgt_done.png: 0.9868040084838867 seconds.
+[I 250207 15:00:17 662927046:19] Time to execute netflow for pointing (Autumn_1, -8.776999999999987, -0.672): 552.1849386692047 seconds.
+[I 250207 15:00:19 662927046:35] Time to calculate completeness: 1.476245403289795 seconds.
+[I 250207 15:00:19 662927046:43] Time to update alreadyObserved: 0.010634899139404297 seconds.
+[I 250207 15:00:20 662927046:49] Time to plot tgt_done.png: 0.9498498439788818 seconds.
